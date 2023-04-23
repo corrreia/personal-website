@@ -37,4 +37,10 @@ export class HistoryService {
   getIndex(): number {
     return this.index;
   }
+
+  clear(): void {
+    this.history = [];
+    this.index = 0;
+    this.historySubject.next(this.history);
+  }
 }

@@ -35,7 +35,7 @@ export class PromptComponent {
   search(term: string): void {
     term = term.trim();
     const inputEl = this.elementRef.nativeElement.querySelector('input');
-    if (this.commandsService.exists(term)) {
+    if (this.commandsService.exists(term) || term.startsWith('clear')) {
       this.renderer.setStyle(inputEl, 'color', this.colors.green);
     } else if (term === '') {
       this.renderer.setStyle(inputEl, 'color', this.colors.grey);
@@ -48,7 +48,15 @@ export class PromptComponent {
   onEnterKey(event: KeyboardEvent) {
     event.preventDefault(); // Prevents the default action of the enter key
 
-    if (this.prompt === '') return;  // Prevents the user from submitting an empty command
+    if (this.prompt === '') return; // Prevents the user from submitting an empty command
+
+    if (this.prompt.startsWith('clear')) {
+      this.historyService.clear();
+      this.prompt = ''; // Clear the prompt
+      this.search(this.prompt); // Set the color of the input element
+      this.index = 0;
+      return;
+    }
 
     const command: string = this.prompt;
 
