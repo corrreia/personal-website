@@ -1,0 +1,12 @@
+input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #7f8c8d;
+  font-size: 100%;
+  font-family: "CascadiaCode", sans-serif;
+  padding: 0;
+  margin-left: 8px;
+  position: fixed;
+  width: 100%;
+}
