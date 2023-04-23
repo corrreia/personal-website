@@ -1,11 +1,14 @@
-<span style="color:{{ colors.green }}">correia</span>@<span
-  style="color:{{ colors.blue }}"
-  >tomascorreia.net</span
->:<span style="color:{{ colors.yellow }}">~</span>$
-<input
-  #searchBox
-  id="search-box"
-  (input)="search(searchBox.value)"
-  autocomplete="off"
-  [(ngModel)]="prompt" type="text"
-/>
+<div class="main">
+  <span [style.color]="colors.orange">correia</span>@<span
+    [style.color]="colors.blue"
+    >tomascorreia.net</span
+  >:<span [style.color]="colors.yellow">~</span>$
+  <input
+    #searchBox
+    id="search-box"
+    (input)="search(searchBox.value)"
+    autocomplete="off"
+    [(ngModel)]="prompt"
+    type="text"
+  />
+</div>

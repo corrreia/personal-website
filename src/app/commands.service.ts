@@ -17,11 +17,28 @@ export class CommandsService {
     },
     welcome: (args: string[]) => {
       return Promise.resolve(`
+      <br>
         Welcome to my personal Website!<br>
-
-        This is a work in progress, so please excuse the mess.<br>
+        <pre style="color: ${this.colors.other_turquoise}">
+                                                           /██
+                                                          |__/
+          /███████  /██████   /██████   /██████   /██████  /██  /██████
+         /██_____/ /██__  ██ /██__  ██ /██__  ██ /██__  ██| ██ |____  ██
+        | ██      | ██  \\ ██| ██  \\__/| ██  \\__/| ████████| ██  /███████
+        | ██      | ██  | ██| ██      | ██      | ██_____/| ██ /██__  ██
+        |  ███████|  ██████/| ██      | ██      |  ███████| ██|  ███████
+         \\_______/ \\______/ |__/      |__/       \\_______/|__/ \\_______/
+        </pre>
         <span style="color: ${this.colors.other_green}">Type 'help' for a list of commands</span>
       `);
+    },
+    about: (args: string[]) => {
+      return Promise.resolve(`
+        <span style="color: ${this.colors.other_green}">• Hi, I'm Tomás Correia</span><br>
+        <span style="color: ${this.colors.green}">• I'm studying Computer Science at the University of Lisbon</span><br>
+        <span style="color: ${this.colors.other_green}">• I have a strong interest in virtualization, containeraization and distributed systems</span><br>
+        <span style="color: ${this.colors.green}">• Check out my curriculum vitae <a href="https://cv.tomascorreia.net" target="_blank" style="color: ${this.colors.other_blue}"> https://cv.tomascorreia.net</a></span><br>
+        `);
     },
     sudo: (args: string[]) => {
       return Promise.resolve(`
@@ -30,22 +47,22 @@ export class CommandsService {
     },
     repo: (args: string[]) => {
       return Promise.resolve(`
-        Check out the source code <a href="https://github.com/corrreia/personal-website" target="_blank" style="color: ${this.colors.other_blue}"> here</a>!
+        Check out the source code <a href="https://github.com/corrreia/personal-website" target="_blank" style="color: ${this.colors.other_blue}"> https://github.com/corrreia/personal-website</a>!
       `);
     },
     cv: (args: string[]) => {
       return Promise.resolve(`
-        Check out my curriculum vitae <a href="https://cv.tomascorreia.net" target="_blank" style="color: ${this.colors.other_blue}"> here</a>!
+        Check out my curriculum vitae <a href="https://cv.tomascorreia.net" target="_blank" style="color: ${this.colors.other_blue}"> https://cv.tomascorreia.net</a>!
       `);
     },
     github: (args: string[]) => {
       return Promise.resolve(`
-        Check out my Github <a href="https://github.com/corrreia" target="_blank" style="color: ${this.colors.other_blue}"> here</a>!
+        Check out my Github <a href="https://github.com/corrreia" target="_blank" style="color: ${this.colors.other_blue}"> https://github.com/corrreia</a>!
       `);
     },
     linkedin: (args: string[]) => {
       return Promise.resolve(`
-        Check out my Linkedin <a href="https://linkedin.com/in/tomasmcorreia" target="_blank" style="color: ${this.colors.other_blue}"> here</a>!
+        Check out my Linkedin <a href="https://linkedin.com/in/tomasmcorreia" target="_blank" style="color: ${this.colors.other_blue}"> https://linkedin.com/in/tomasmcorreia</a>!
       `);
     },
     weather: (args: string[]) => {

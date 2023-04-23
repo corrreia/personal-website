@@ -39,3 +39,10 @@ app-root {
   display: flex;
   padding: 10px;
 }
+
+pre {
+  font-family: "CascadiaCode", monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+}

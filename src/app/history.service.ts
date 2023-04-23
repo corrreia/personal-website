@@ -33,4 +33,8 @@ export class HistoryService {
   getCommand(index: number): string {
     return this.history[index].command;
   }
+
+  getIndex(): number {
+    return this.index;
+  }
 }
