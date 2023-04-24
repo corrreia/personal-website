@@ -22,10 +22,6 @@ export class CommandsService {
       return Promise.resolve(`Avaliable commands: ${this.helpHelper()}`);
     },
     welcome: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'welcome',
-      });
       return Promise.resolve(`
       <br>
         Welcome to my personal Website!<br>
@@ -43,10 +39,6 @@ export class CommandsService {
       `);
     },
     about: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'about',
-      });
       return Promise.resolve(`
         <span>• Hi, I'm Tomás Correia</span><br>
         <span>• I'm studying Computer Science at the University of Lisbon</span><br>
@@ -55,55 +47,31 @@ export class CommandsService {
         `);
     },
     sudo: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'sudo',
-      });
       return Promise.resolve(`
         <span style="color: ${this.colors.red}">Permission denied</span>
       `);
     },
     repo: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'repo',
-      });
       return Promise.resolve(`
         Check out the source code <a href="https://github.com/corrreia/personal-website" target="_blank" style="color: ${this.colors.other_blue}"> https://github.com/corrreia/personal-website</a>!
       `);
     },
     cv: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'cv',
-      });
       return Promise.resolve(`
         Check out my curriculum vitae <a href="https://cv.tomascorreia.net" target="_blank" style="color: ${this.colors.other_blue}"> https://cv.tomascorreia.net</a>!
       `);
     },
     github: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'github',
-      });
       return Promise.resolve(`
         Check out my Github <a href="https://github.com/corrreia" target="_blank" style="color: ${this.colors.other_blue}"> https://github.com/corrreia</a>!
       `);
     },
     linkedin: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'linkedin',
-      });
       return Promise.resolve(`
         Check out my Linkedin <a href="https://linkedin.com/in/tomasmcorreia" target="_blank" style="color: ${this.colors.other_blue}"> https://linkedin.com/in/tomasmcorreia</a>!
       `);
     },
     weather: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'weather',
-      });
       //if no args, use "" if args use args[0]%20args[1]...
       let city: string = '';
       if (args.length > 0) {
@@ -119,10 +87,6 @@ export class CommandsService {
       });
     },
     joke: async (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'joke',
-      });
       const response = await fetch(
         'https://official-joke-api.appspot.com/random_joke'
       );
@@ -132,10 +96,6 @@ export class CommandsService {
     `);
     },
     quote: async (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'quote',
-      });
       const response = await fetch('https://api.quotable.io/random');
       const { content, author } = await response.json();
       return Promise.resolve(`
@@ -143,10 +103,6 @@ export class CommandsService {
     `);
     },
     advice: async (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'advice',
-      });
       const response = await fetch('https://api.adviceslip.com/advice');
       const {
         slip: { advice },
@@ -156,48 +112,28 @@ export class CommandsService {
     `);
     },
     ping: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'ping',
-      });
       return Promise.resolve(
         `<span style="color: ${this.colors.purple}">Pong!</span>`
       );
     },
     google: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'google',
-      });
       const query = args.join('+');
       return Promise.resolve(`
         <a href="https://www.google.com/search?q=${query}" target="_blank" style="color: ${this.colors.other_blue}"> https://www.google.com/search?q=${query}</a>
       `);
     },
     uptime: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'uptime',
-      });
       const uptime = this.getUptime();
       return Promise.resolve(`
         <span style="color: ${this.colors.yellow}">Uptime: ${uptime}</span>
       `);
     },
     whoami: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'whoami',
-      });
       return Promise.resolve(`
         <span style="color: ${this.colors.white}">Tomás Correia</span>
       `);
     },
     date: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'date',
-      });
       return Promise.resolve(`
         <span style="color: ${
           this.colors.white
@@ -205,10 +141,6 @@ export class CommandsService {
       `);
     },
     time: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'time',
-      });
       return Promise.resolve(`
         <span style="color: ${
           this.colors.white
@@ -216,37 +148,21 @@ export class CommandsService {
       `);
     },
     pwd: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'pwd',
-      });
       return Promise.resolve(`
         <span style="color: ${this.colors.white}">~</span>
       `);
     },
     cd: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'cd',
-      });
       return Promise.resolve(`
         <em>cd: command not implemented</em>
       `);
     },
     ls: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'ls',
-      });
       return Promise.resolve(`
         <em>ls: command not implemented</em>
       `);
     },
     neofetch: (args: string[]) => {
-      gtag('event', 'command_used', {
-        event_category: 'terminal',
-        event_label: 'neofetch',
-      });
       return Promise.resolve(`
         <img src="https://media.tenor.com/IaHWusTft-sAAAAC/hasbulla.gif" style="width: 250px; height: auto;"/>
       `);
@@ -280,6 +196,11 @@ export class CommandsService {
         `${command}: command not found. Type 'help' for a list of commands.`
       );
     }
+
+    gtag('event', 'command_used', {
+      event_category: 'terminal',
+      event_label: command,
+    });
 
     try {
       const output = await this.commands[command](args);
