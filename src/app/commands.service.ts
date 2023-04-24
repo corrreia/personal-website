@@ -10,6 +10,7 @@ interface CommandMap {
 })
 export class CommandsService {
   private colors;
+  private startTime = new Date().getTime();
 
   commands: CommandMap = {
     help: (args: string[]) => {
@@ -34,10 +35,10 @@ export class CommandsService {
     },
     about: (args: string[]) => {
       return Promise.resolve(`
-        <span style="color: ${this.colors.other_green}">• Hi, I'm Tomás Correia</span><br>
-        <span style="color: ${this.colors.green}">• I'm studying Computer Science at the University of Lisbon</span><br>
-        <span style="color: ${this.colors.other_green}">• I have a strong interest in virtualization, containeraization and distributed systems</span><br>
-        <span style="color: ${this.colors.green}">• Check out my curriculum vitae <a href="https://cv.tomascorreia.net" target="_blank" style="color: ${this.colors.other_blue}"> https://cv.tomascorreia.net</a></span><br>
+        <span>• Hi, I'm Tomás Correia</span><br>
+        <span>• I'm studying Computer Science at the University of Lisbon</span><br>
+        <span>• I have a strong interest in networking, virtualization, containeraization and distributed systems</span><br>
+        <span>• Check out my curriculum vitae <a href="https://cv.tomascorreia.net" target="_blank" style="color: ${this.colors.other_blue}"> https://cv.tomascorreia.net</a></span><br>
         `);
     },
     sudo: (args: string[]) => {
@@ -105,15 +106,62 @@ export class CommandsService {
       <em>${advice}</em>
     `);
     },
-    // fact: async (args: string[]) => {
-    //   const response = await fetch(
-    //     'https://useless-facts.sameerkumar.website/api'
-    //   );
-    //   const { data } = await response.json();
-    //   return Promise.resolve(`
-    //   <em>${data}</em>
-    // `);
-    // },
+    ping: (args: string[]) => {
+      return Promise.resolve(
+        `<span style="color: ${this.colors.purple}">Pong!</span>`
+      );
+    },
+    google: (args: string[]) => {
+      const query = args.join('+');
+      return Promise.resolve(`
+        <a href="https://www.google.com/search?q=${query}" target="_blank" style="color: ${this.colors.other_blue}"> https://www.google.com/search?q=${query}</a>
+      `);
+    },
+    uptime: (args: string[]) => {
+      const uptime = this.getUptime();
+      return Promise.resolve(`
+        <span style="color: ${this.colors.yellow}">Uptime: ${uptime}</span>
+      `);
+    },
+    whoami: (args: string[]) => {
+      return Promise.resolve(`
+        <span style="color: ${this.colors.white}">Tomás Correia</span>
+      `);
+    },
+    date: (args: string[]) => {
+      return Promise.resolve(`
+        <span style="color: ${
+          this.colors.white
+        }">${new Date().toLocaleDateString()}</span>
+      `);
+    },
+    time: (args: string[]) => {
+      return Promise.resolve(`
+        <span style="color: ${
+          this.colors.white
+        }">${new Date().toLocaleTimeString()}</span>
+      `);
+    },
+    pwd: (args: string[]) => {
+      return Promise.resolve(`
+        <span style="color: ${this.colors.white}">~</span>
+      `);
+    },
+    cd: (args: string[]) => {
+      return Promise.resolve(`
+        <em>cd: command not implemented</em>
+      `);
+    },
+    ls: (args: string[]) => {
+      return Promise.resolve(`
+        <em>ls: command not implemented</em>
+      `);
+    },
+    neofetch: (args: string[]) => {
+      return Promise.resolve(`
+        <img src="https://media.tenor.com/IaHWusTft-sAAAAC/hasbulla.gif" style="width: 250px; height: auto;"/>
+      `);
+    },
   };
 
   constructor(private colorDataService: ColorDataService) {
@@ -163,5 +211,14 @@ export class CommandsService {
       }
     }
     return command;
+  }
+
+  getUptime(): string {
+    const uptime = Math.floor((Date.now() - this.startTime) / 1000);
+    const days = Math.floor(uptime / 86400);
+    const hours = Math.floor((uptime % 86400) / 3600);
+    const minutes = Math.floor((uptime % 3600) / 60);
+    const seconds = Math.floor(uptime % 60);
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
   }
 }

@@ -11,9 +11,6 @@ import { HistoryService } from '../history.service';
 })
 export class PromptComponent {
   colors;
-
-  private index: number = 1;
-
   prompt: string = '';
 
   constructor(
@@ -54,7 +51,6 @@ export class PromptComponent {
       this.historyService.clear();
       this.prompt = ''; // Clear the prompt
       this.search(this.prompt); // Set the color of the input element
-      this.index = 0;
       return;
     }
 
@@ -66,7 +62,6 @@ export class PromptComponent {
 
     this.prompt = ''; // Clear the prompt
     this.search(this.prompt); // Set the color of the input element
-    this.index++;
   }
 
   @HostListener('keydown.tab', ['$event'])
@@ -78,24 +73,15 @@ export class PromptComponent {
 
   @HostListener('keydown.arrowup', ['$event'])
   onArrowUpKey(event: KeyboardEvent) {
-    if (this.index > 0) {
-      this.index--;
-      this.prompt = this.historyService.getCommand(this.index);
-      this.search(this.prompt); // Set the color of the input element
-    }
+    event.preventDefault(); // Prevents the default action of the arrow up key
+    this.prompt = this.historyService.historyUp();
+    this.search(this.prompt); // Set the color of the input element
   }
 
   @HostListener('keydown.arrowdown', ['$event'])
   onArrowDownKey(event: KeyboardEvent) {
-    if (this.index < this.historyService.getIndex()) {
-      this.index++;
-      try {
-        this.prompt = this.historyService.getCommand(this.index);
-      } catch (e) {
-        this.prompt = '';
-        this.index = this.historyService.getIndex();
-      }
-      this.search(this.prompt); // Set the color of the input element
-    }
+    event.preventDefault(); // Prevents the default action of the arrow down key
+    this.prompt = this.historyService.historyDown();
+    this.search(this.prompt); // Set the color of the input element
   }
 }

@@ -21,7 +21,7 @@ export class PreviousCommandsComponent {
     private sanitizer: DomSanitizer
   ) {
     this.colors = colorDataService.getColors();
-    this.historyService.getHistory().subscribe((history) => {
+    this.historyService.getCommandsOnDisplay().subscribe((history) => {
       this.history = history.map((entry) => {
         return {
           command: entry.command,
