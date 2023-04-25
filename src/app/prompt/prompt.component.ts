@@ -62,6 +62,10 @@ export class PromptComponent {
 
     this.prompt = ''; // Clear the prompt
     this.search(this.prompt); // Set the color of the input element
+
+    //scroll to bottom
+    const historyEl = this.elementRef.nativeElement.querySelector('.main');
+    historyEl.scrollTop = historyEl.scrollHeight;
   }
 
   @HostListener('keydown.tab', ['$event'])
